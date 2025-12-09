@@ -1,0 +1,128 @@
+# Copilot Rules - DroneDelivery SPA
+
+## Regole di Progetto
+
+### Vincoli Stilistici (NON NEGOZIABILI)
+
+```
+⛔ NO Bootstrap - CSS completamente custom
+⛔ NO Gradienti - Solo colori flat
+⛔ NO Emoji - Solo icone Lucide
+⛔ NO Framework JS - Vanilla JavaScript ES6+
+⛔ NO Query SQL raw - Solo SQLAlchemy ORM
+```
+
+### Convenzioni Codice
+
+#### Python (Backend)
+```python
+# Pattern factory per Flask
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    # ...
+    return app
+
+# Serializzazione modelli
+def to_dict(self):
+    return { 'campo': self.Campo }
+
+# Blueprint con prefisso
+app.register_blueprint(bp, url_prefix='/api/risorsa')
+
+# Response JSON
+return jsonify(data), status_code
+```
+
+#### JavaScript (Frontend)
+```javascript
+// Moduli su window namespace
+window.ModuloNome = {
+    async render() { },
+    init() { }
+};
+
+// Fetch API wrapper
+async function apiCall(endpoint) {
+    const res = await fetch(`/api/${endpoint}`);
+    if (!res.ok) throw new Error(res.statusText);
+    return res.json();
+}
+
+// Hash routing
+window.location.hash = '#sezione';
+```
+
+#### CSS
+```css
+/* Usa sempre variabili CSS */
+color: var(--color-primary);
+padding: var(--spacing-md);
+
+/* BEM-like naming */
+.componente { }
+.componente__elemento { }
+.componente--modificatore { }
+```
+
+### Struttura File
+
+```
+backend/
+├── app/
+│   ├── __init__.py      # create_app()
+│   ├── config.py        # Config class
+│   ├── extensions.py    # db = SQLAlchemy()
+│   ├── models/          # Un file per modello
+│   ├── routes/          # Un blueprint per risorsa
+│   ├── services/        # Business logic
+│   └── utils/           # Helpers
+
+frontend/
+├── templates/           # HTML pages
+└── static/
+    ├── css/            # Design system
+    └── js/
+        ├── shared/     # Moduli condivisi
+        ├── cliente/    # SPA Cliente
+        └── admin/      # SPA Admin
+```
+
+### Pattern API
+
+```
+GET    /api/risorsa          → Lista
+POST   /api/risorsa          → Crea
+GET    /api/risorsa/:id      → Dettaglio
+PATCH  /api/risorsa/:id      → Aggiorna parziale
+DELETE /api/risorsa/:id      → Elimina
+```
+
+### Design Tokens
+
+| Token | Valore | Uso |
+|-------|--------|-----|
+| `--color-primary` | `#0A84FF` | Azioni principali |
+| `--color-success` | `#30D158` | Stati positivi |
+| `--color-warning` | `#FF9F0A` | Avvisi |
+| `--color-danger` | `#FF453A` | Errori |
+| `--color-bg` | `#1C1C1E` | Background |
+| `--color-bg-elevated` | `#2C2C2E` | Card/Modal |
+
+### Workflow Sviluppo
+
+1. **Modifica Backend**: Aggiorna modello → route → service
+2. **Modifica Frontend**: Aggiorna api.js → modulo specifico → template
+3. **Nuovo Endpoint**: Blueprint → registra → documenta in README
+4. **Nuovo Componente UI**: CSS → JS render → integra in app.js
+
+### Risposte in Italiano
+
+Tutte le risposte devono essere in italiano come da istruzioni globali.
+
+### Checklist Pre-Commit
+
+- [ ] Nessun print() di debug
+- [ ] Variabili .env non hardcodate
+- [ ] CSS usa solo variabili definite
+- [ ] JS non ha console.log di produzione
+- [ ] Tutti gli endpoint documentati

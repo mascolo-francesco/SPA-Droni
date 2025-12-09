@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DroneDelivery - Accedi</title>
+    <link rel="stylesheet" href="/static/css/variables.css">
+    <link rel="stylesheet" href="/static/css/common.css">
+    <style>
+        .landing-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-md);
+        }
+        
+        .landing-container {
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .landing-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .landing-logo {
+            font-family: 'DM Sans', system-ui, sans-serif;
+            font-size: var(--text-4xl);
+            font-weight: var(--font-bold);
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .landing-subtitle {
+            color: var(--color-text-secondary);
+            font-size: var(--text-lg);
+        }
+        
+        .landing-card {
+            background-color: var(--color-bg-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+        }
+        
+        .landing-tabs {
+            display: flex;
+            margin-bottom: var(--space-lg);
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .landing-tab {
+            flex: 1;
+            padding: var(--space-md);
+            text-align: center;
+            font-weight: var(--font-medium);
+            color: var(--color-text-secondary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            transition: color var(--transition-fast);
+        }
+        
+        .landing-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: transparent;
+            transition: background-color var(--transition-fast);
+        }
+        
+        .landing-tab:hover {
+            color: var(--color-text);
+        }
+        
+        .landing-tab.active {
+            color: var(--color-primary);
+        }
+        
+        .landing-tab.active::after {
+            background-color: var(--color-primary);
+        }
+        
+        .form-panel {
+            display: none;
+        }
+        
+        .form-panel.active {
+            display: block;
+        }
+        
+        .landing-footer {
+            text-align: center;
+            margin-top: var(--space-lg);
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+        }
+        
+        .landing-footer a {
+            color: var(--color-primary);
+        }
+        
+        .error-message {
+            background-color: rgba(255, 69, 58, 0.1);
+            border: 1px solid var(--color-danger);
+            color: var(--color-danger);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-md);
+            font-size: var(--text-sm);
+            margin-bottom: var(--space-md);
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-page">
+        <div class="landing-container">
+            <div class="landing-header">
+                <h1 class="landing-logo">DroneDelivery</h1>
+                <p class="landing-subtitle">Consegne veloci con droni</p>
+            </div>
+            
+            <div class="landing-card">
+                <div class="landing-tabs">
+                    <button class="landing-tab active" data-tab="login">Accedi</button>
+                    <button class="landing-tab" data-tab="register">Registrati</button>
+                </div>
+                
+                <div id="error-container" class="error-message"></div>
+                
+                <!-- Login Form -->
+                <div id="login-panel" class="form-panel active">
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label class="form-label" for="login-email">Email</label>
+                            <input type="email" id="login-email" class="input" placeholder="nome@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="login-password">Password</label>
+                            <input type="password" id="login-password" class="input" placeholder="La tua password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: var(--space-sm);">
+                            Accedi
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Register Form -->
+                <div id="register-panel" class="form-panel">
+                    <form id="register-form">
+                        <div class="form-group">
+                            <label class="form-label" for="register-name">Nome completo</label>
+                            <input type="text" id="register-name" class="input" placeholder="Mario Rossi" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="register-email">Email</label>
+                            <input type="email" id="register-email" class="input" placeholder="nome@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="register-password">Password</label>
+                            <input type="password" id="register-password" class="input" placeholder="Crea una password" required minlength="6">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: var(--space-sm);">
+                            Registrati
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="landing-footer">
+                <p>Accesso amministratore? <a href="/admin">Vai al pannello admin</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Tab switching
+        document.querySelectorAll('.landing-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.landing-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab + '-panel').classList.add('active');
+                
+                // Clear error
+                document.getElementById('error-container').classList.remove('show');
+            });
+        });
+        
+        // Show error
+        function showError(message) {
+            const errorEl = document.getElementById('error-container');
+            errorEl.textContent = message;
+            errorEl.classList.add('show');
+        }
+        
+        // Login form
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            try {
+                const res = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await res.json();
+                
+                if (res.ok && data.success) {
+                    // Save user info
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    
+                    // Redirect based on role
+                    if (data.user.ruolo === 'admin') {
+                        window.location.href = '/admin';
+                    } else {
+                        window.location.href = '/cliente';
+                    }
+                } else {
+                    showError(data.error || 'Errore di login');
+                }
+            } catch (err) {
+                showError('Errore di connessione');
+            }
+        });
+        
+        // Register form
+        document.getElementById('register-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const nome = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            
+            try {
+                const res = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nome, email, password })
+                });
+                
+                const data = await res.json();
+                
+                if (res.ok && data.success) {
+                    // Auto login after registration
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    window.location.href = '/cliente';
+                } else {
+                    showError(data.error || 'Errore di registrazione');
+                }
+            } catch (err) {
+                showError('Errore di connessione');
+            }
+        });
+        
+        // Check if already logged in
+        (async () => {
+            try {
+                const res = await fetch('/api/auth/check');
+                const data = await res.json();
+                
+                if (data.authenticated) {
+                    if (data.ruolo === 'admin') {
+                        window.location.href = '/admin';
+                    } else {
+                        window.location.href = '/cliente';
+                    }
+                }
+            } catch (err) {
+                // Not logged in, stay on page
+            }
+        })();
+    </script>
+</body>
+</html>
