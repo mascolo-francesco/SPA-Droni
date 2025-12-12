@@ -1,3 +1,31 @@
+"""
+Blueprint per la gestione delle missioni di consegna.
+
+Le missioni sono l'elemento operativo centrale che coordina:
+- Droni (risorsa tecnica)
+- Piloti (risorsa umana) 
+- Ordini (richieste clienti)
+- Tracce GPS (tracking real-time)
+
+Funzionalità fornite:
+- CRUD missioni con assegnazione drone/pilota
+- Filtri per stato e data
+- Aggiornamento stato missione (piloti)
+- Gestione valutazioni post-consegna (clienti)
+- Visualizzazione e aggiunta tracce GPS
+- Storico completo percorso missione
+
+Stati missione: programmata, in_corso, completata, annullata
+
+Autorizzazioni:
+- Lista/dettaglio: Login richiesto
+- Creazione/modifica: Solo admin
+- Aggiornamento stato: Piloti e admin
+- Valutazione: Clienti (solo missioni completate)
+- Tracce GPS: Piloti per inserimento
+
+Tutti gli endpoint sono sotto il prefix '/api/missioni'.
+"""
 from flask import Blueprint, request, jsonify, session
 from app.extensions import db
 from app.models import Missione, Drone, Pilota, Traccia

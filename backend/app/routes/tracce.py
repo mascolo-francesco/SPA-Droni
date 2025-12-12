@@ -1,3 +1,29 @@
+"""
+Blueprint per il tracciamento GPS dei droni.
+
+Gestisce le tracce GPS che permettono il tracking real-time
+delle consegne. Ogni traccia rappresenta un punto nel percorso
+del drone con coordinate geografiche e timestamp.
+
+Funzionalità:
+- Recupero tracce per missione (percorso completo)
+- Ultima posizione drone per una missione (posizione corrente)
+- Tracce storiche per drone specifico
+- Inserimento nuove tracce GPS (piloti/sistema)
+- Inserimento batch di multiple tracce (ottimizzazione)
+
+Le tracce permettono:
+- Visualizzazione percorso su mappa interattiva
+- Stima tempo arrivo basata su posizione corrente
+- Ricostruzione storica voli per analisi
+- Monitoraggio deviazioni dal percorso pianificato
+
+Autorizzazioni:
+- GET: Login richiesto (clienti vedono solo propri ordini)
+- POST: Piloti e admin possono aggiungere tracce
+
+Tutti gli endpoint sono sotto il prefix '/api/tracce'.
+"""
 from flask import Blueprint, request, jsonify
 from app.extensions import db
 from app.models import Traccia, Missione

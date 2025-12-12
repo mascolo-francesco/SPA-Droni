@@ -1,3 +1,42 @@
+"""
+Blueprint per statistiche e KPI dashboard.
+
+Fornisce endpoint analitici per la dashboard amministrativa
+con metriche aggregate e report sulle operazioni:
+
+KPI Overview:
+- Conteggi totali: ordini, missioni, droni, piloti, clienti
+- Metriche operative: missioni completate, in corso
+- Media valutazioni clienti
+- Droni disponibili per nuove missioni
+
+Statistiche Missioni:
+- Distribuzione per stato (programmata/in_corso/completata)
+- Andamento temporale (ultimi 30 giorni)
+
+Statistiche Droni:
+- Performance per drone (missioni completate, valutazione media)
+- Utilizzo flotta (ore volo, capacità utilizzata)
+
+Statistiche Piloti:
+- Ranking per valutazione media
+- Missioni completate per pilota
+- Performance per turno
+
+Statistiche Valutazioni:
+- Distribuzione voti (1-10)
+- Media generale
+- Trend nel tempo
+
+Statistiche Ordini:
+- Distribuzione per tipo
+- Peso medio ordini
+- Volume temporale
+
+Autorizzazioni: Tutti gli endpoint richiedono ruolo admin.
+
+Tutti gli endpoint sono sotto il prefix '/api/stats'.
+"""
 from flask import Blueprint, jsonify
 from sqlalchemy import func
 from app.extensions import db

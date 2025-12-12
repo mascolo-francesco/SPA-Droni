@@ -1,3 +1,24 @@
+"""
+Blueprint per la gestione dei piloti.
+
+Questo modulo fornisce tutti gli endpoint API per la gestione CRUD dei piloti
+e operazioni correlate come:
+- Lista piloti con filtro opzionale per turno
+- Dettaglio singolo pilota con dati anagrafici
+- Creazione/modifica/eliminazione piloti (solo admin)
+- Verifica disponibilità piloti per nuove missioni  
+- Storico missioni e statistiche performance per pilota
+
+I piloti sono le risorse umane che controllano i droni durante le missioni.
+Ogni pilota ha un turno assegnato e un brevetto che certifica le competenze.
+
+Autorizzazioni:
+- GET (list/detail): Richiede login (qualsiasi utente autenticato)
+- POST/PUT/DELETE: Richiede ruolo admin
+- Statistiche: Richiede ruolo admin
+
+Tutti gli endpoint sono sotto il prefix '/api/piloti'.
+"""
 from flask import Blueprint, request, jsonify
 from app.extensions import db
 from app.models import Pilota, Missione
