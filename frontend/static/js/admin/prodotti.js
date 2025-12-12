@@ -1,3 +1,9 @@
+/* ========================================================================
+   File: prodotti.js
+   Modulo: admin
+   DroneDelivery SPA - JavaScript Module
+   ======================================================================== */
+
 /**
  * Prodotti View - Product management for admins
  */

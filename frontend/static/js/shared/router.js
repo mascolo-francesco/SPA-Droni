@@ -1,3 +1,9 @@
+/* ========================================================================
+   File: router.js
+   Modulo: shared
+   DroneDelivery SPA - JavaScript Module
+   ======================================================================== */
+
 /**
  * Simple Hash-Based Router
  * Supporta container rendering, route dinamiche e navigazione SPA

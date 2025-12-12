@@ -1,3 +1,9 @@
+/* ========================================================================
+   File: tracking.js
+   Modulo: cliente
+   DroneDelivery SPA - JavaScript Module
+   ======================================================================== */
+
 /**
  * Tracking Module - Live tracking with polling
  */

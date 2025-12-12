@@ -1,3 +1,9 @@
+/* ========================================================================
+   File: components.js
+   Modulo: shared
+   DroneDelivery SPA - JavaScript Module
+   ======================================================================== */
+
 /**
  * Reusable UI Components
  */
