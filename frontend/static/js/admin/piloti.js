@@ -1,3 +1,9 @@
+/* ========================================================================
+   File: piloti.js
+   Modulo: admin
+   DroneDelivery SPA - JavaScript Module
+   ======================================================================== */
+
 /**
  * Piloti View - Pilot management for admins
  */

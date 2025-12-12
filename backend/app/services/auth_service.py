@@ -1,3 +1,23 @@
+"""
+Servizio per la logica di business dell'autenticazione.
+
+NOTA: Questo file contiene funzioni legacy che NON sono attualmente
+utilizzate dall'applicazione. La logica di autenticazione è implementata
+direttamente nelle route (backend/app/routes/auth.py).
+
+Funzioni fornite (non utilizzate):
+- login(): Verifica credenziali utente
+- register(): Registra nuovo utente con hash password
+
+Questo servizio era probabilmente parte di un refactoring iniziale
+per separare business logic dalle route, ma la logica è stata poi
+mantenuta direttamente nelle route per semplicità.
+
+Potenziale utilizzo futuro:
+Se si volesse centralizzare la logica auth (ad es. per riutilizzarla
+in test o altre parti dell'app), queste funzioni potrebbero essere
+riattivate e chiamate dalle route invece di duplicare il codice.
+"""
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.models import Utente
 from app.extensions import db

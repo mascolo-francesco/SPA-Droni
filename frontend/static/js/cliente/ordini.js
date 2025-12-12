@@ -1,3 +1,9 @@
+/* ========================================================================
+   File: ordini.js
+   Modulo: cliente
+   DroneDelivery SPA - JavaScript Module
+   ======================================================================== */
+
 /**
  * Ordini Module - Order list and detail rendering
  */

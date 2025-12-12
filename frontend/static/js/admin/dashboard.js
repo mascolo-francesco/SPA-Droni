@@ -1,3 +1,9 @@
+/* ========================================================================
+   File: dashboard.js
+   Modulo: admin
+   DroneDelivery SPA - JavaScript Module
+   ======================================================================== */
+
 /**
  * Dashboard View - Admin dashboard with stats and overview
  */

@@ -1,3 +1,24 @@
+"""
+Blueprint per la gestione degli ordini clienti.
+
+Questo modulo gestisce il ciclo di vita completo degli ordini:
+- Creazione ordini da parte dei clienti
+- Lista ordini (filtrata per utente se cliente, completa se admin)
+- Dettaglio ordine con prodotti e stato missione associata
+- Tracking real-time della consegna con posizione GPS
+- Modifica e cancellazione ordini (solo admin)
+
+Gli ordini collegano clienti, prodotti e missioni rappresentando
+il cuore del flusso operativo dell'applicazione.
+
+Funzionalità chiave:
+- Calcolo automatico peso totale sommando pesi prodotti
+- Associazione ordine-prodotti tramite tabella Contiene
+- Tracking GPS real-time quando ordine assegnato a missione
+- Controlli accesso: clienti vedono solo propri ordini
+
+Tutti gli endpoint sono sotto il prefix '/api/ordini'.
+"""
 from flask import Blueprint, request, jsonify, session
 from app.extensions import db
 from app.models import Ordine, Missione, Contiene, Prodotto, Traccia

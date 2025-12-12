@@ -1,3 +1,9 @@
+/* ========================================================================
+   File: ordini.js
+   Modulo: admin
+   DroneDelivery SPA - JavaScript Module
+   ======================================================================== */
+
 /**
  * Ordini Admin View - Order management for admins
  */

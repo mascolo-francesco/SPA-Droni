@@ -1,3 +1,9 @@
+/* ========================================================================
+   File: api.js
+   Modulo: admin
+   DroneDelivery SPA - JavaScript Module
+   ======================================================================== */
+
 /**
  * Admin API Module - API wrapper for admin endpoints
  */

@@ -1,3 +1,9 @@
+/* ========================================================================
+   File: app.js
+   Modulo: cliente
+   DroneDelivery SPA - JavaScript Module
+   ======================================================================== */
+
 /**
  * Cliente App - Main entry point
  */

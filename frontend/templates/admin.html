@@ -1,5 +1,114 @@
 <!DOCTYPE html>
+
+
 <html lang="it">
+<!--
+╔══════════════════════════════════════════════════════════════════════════════╗
+║ Template HTML: Pannello Amministrazione DroneDelivery SPA                    ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                               ║
+║ DESCRIZIONE:                                                                  ║
+║ Single Page Application (SPA) per il pannello di amministrazione completo.   ║
+║ Dashboard operativa con gestione CRUD di tutte le risorse del sistema.       ║
+║                                                                               ║
+║ ARCHITETTURA:                                                                 ║
+║ • Layout sidebar + main content come cliente.html                             ║
+║ • Router client-side per navigazione tra sezioni                             ║
+║ • CRUD operations su tutte le entità                                          ║
+║ • Modal system per form create/edit                                           ║
+║ • Real-time KPI dashboard                                                     ║
+║                                                                               ║
+║ MENU NAVIGAZIONE SIDEBAR:                                                     ║
+║ 1. Dashboard - KPI e statistiche aggregate                                    ║
+║ 2. Ordini - Gestione tutti gli ordini sistema                                 ║
+║ 3. Missioni - Pianificazione e assegnazione missioni                         ║
+║ 4. Droni - Gestione flotta droni                                             ║
+║ 5. Piloti - Gestione team piloti                                             ║
+║ 6. Prodotti - Gestione catalogo prodotti                                     ║
+║                                                                               ║
+║ FUNZIONALITÀ ADMIN:                                                            ║
+║                                                                               ║
+║ Dashboard:                                                                     ║
+║ • KPI cards: ordini totali, missioni, droni, piloti                          ║
+║ • Chart missioni per stato                                                    ║
+║ • Chart distribuzione valutazioni                                             ║
+║ • Tabella top piloti per performance                                          ║
+║ • Statistiche droni (utilizzo, disponibilità)                                 ║
+║                                                                               ║
+║ Ordini:                                                                        ║
+║ • Lista completa ordini tutti i clienti                                        ║
+║ • Filtri per stato, data, cliente                                              ║
+║ • Dettaglio ordine con prodotti                                                ║
+║ • Assegnazione ordine a missione                                               ║
+║ • Modifica/cancellazione ordini                                                ║
+║                                                                               ║
+║ Missioni:                                                                      ║
+║ • Creazione nuova missione                                                     ║
+║ • Assegnazione drone + pilota disponibili                                     ║
+║ • Impostazione coordinate pickup/destinazione                                 ║
+║ • Modifica stato missione (programmata/in_corso/completata)                   ║
+║ • Visualizzazione tracce GPS su mappa                                         ║
+║ • Storico missioni con filtri                                                 ║
+║                                                                               ║
+║ Droni:                                                                         ║
+║ • Lista flotta con stato batteria                                              ║
+║ • Aggiungi nuovo drone (modello, capacità)                                    ║
+║ • Modifica specifiche drone                                                   ║
+║ • Elimina drone (se nessuna missione attiva)                                  ║
+║ • Verifica disponibilità per assegnazioni                                     ║
+║ • Storico missioni per drone                                                  ║
+║                                                                               ║
+║ Piloti:                                                                        ║
+║ • Lista piloti con turni                                                       ║
+║ • Aggiungi pilota (anagrafica + brevetto + turno)                             ║
+║ • Modifica dati pilota                                                        ║
+║ • Elimina pilota (se nessuna missione attiva)                                 ║
+║ • Verifica disponibilità per turno                                            ║
+║ • Statistiche performance (valutazione media, missioni)                       ║
+║                                                                               ║
+║ Prodotti:                                                                      ║
+║ • Catalogo completo con categorie                                             ║
+║ • Aggiungi prodotto (nome, peso, categoria)                                   ║
+║ • Modifica prodotto                                                           ║
+║ • Elimina prodotto                                                            ║
+║ • Ricerca e filtri per categoria                                              ║
+║ • Gestione categorie                                                          ║
+║                                                                               ║
+║ MODULI JAVASCRIPT CARICATI:                                                    ║
+║ Shared:                                                                       ║
+║ • utils.js, auth.js, router.js, components.js                                 ║
+║                                                                               ║
+║ Admin-specific:                                                               ║
+║ • api.js - Admin API wrapper con tutti gli endpoint                           ║
+║ • dashboard.js - KPI e statistiche aggregate                                  ║
+║ • ordini.js - Gestione completa ordini                                        ║
+║ • missioni.js - CRUD missioni con assegnazione risorse                        ║
+║ • droni.js - Gestione flotta droni                                            ║
+║ • piloti.js - Gestione team piloti                                            ║
+║ • prodotti.js - Gestione catalogo                                             ║
+║ • app.js - Bootstrapping AdminApp                                             ║
+║                                                                               ║
+║ COMPONENTI UI:                                                                 ║
+║ • Modal overlay per form create/edit                                          ║
+║ • Toast notifications per feedback operazioni                                 ║
+║ • Loading states durante chiamate API                                         ║
+║ • Confirm dialogs per operazioni distruttive                                  ║
+║ • Data tables con sorting e pagination                                        ║
+║ • Form validation client-side                                                 ║
+║                                                                               ║
+║ SICUREZZA:                                                                     ║
+║ • Tutti gli endpoint richiedono ruolo admin                                   ║
+║ • Verifica sessione ad ogni navigazione                                       ║
+║ • Auto-redirect a login se sessione scaduta                                   ║
+║ • CSRF protection tramite same-site cookies                                   ║
+║                                                                               ║
+║ BADGE ADMIN:                                                                   ║
+║ • Badge "Admin" visibile nella sidebar header                                 ║
+║ • Indica privilegi elevati dell'utente corrente                               ║
+║                                                                               ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+-->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

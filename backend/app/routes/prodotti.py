@@ -1,3 +1,22 @@
+"""
+Blueprint per la gestione del catalogo prodotti.
+
+Questo modulo fornisce tutti gli endpoint API per la gestione dei prodotti
+disponibili per l'ordinazione. Include funzionalità per:
+- Lista prodotti con paginazione e filtri per categoria
+- Ricerca prodotti per nome (LIKE query)
+- Dettaglio singolo prodotto
+- CRUD prodotti (solo admin)
+- Lista categorie disponibili
+
+Caratteristiche:
+- Endpoint pubblici per consultazione catalogo (GET list/detail)
+- Endpoint protetti per gestione (POST/PUT/DELETE richiedono admin)
+- Supporto paginazione nativa per grandi cataloghi
+- Ricerca full-text per nome prodotto
+
+Tutti gli endpoint sono sotto il prefix '/api/prodotti'.
+"""
 from flask import Blueprint, request, jsonify
 from app.extensions import db
 from app.models import Prodotto

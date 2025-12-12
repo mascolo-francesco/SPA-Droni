@@ -1,6 +1,34 @@
 #!/usr/bin/env python3
 """
-Script per inizializzare il database con schema e seed data
+Script di inizializzazione database MySQL.
+
+Questo script automatizza la configurazione iniziale del database eseguendo:
+1. Lettura configurazione da DATABASE_URL nel file .env
+2. Connessione al database MySQL tramite PyMySQL
+3. Esecuzione dello schema SQL (database/schema.sql) per creare tabelle
+4. Esecuzione del seed SQL (database/seed.sql) per inserire dati iniziali
+
+Lo script è progettato per essere idempotente dove possibile:
+- Continua l'esecuzione anche se alcune istruzioni falliscono
+- Gestisce duplicati nei seed data senza errori fatali
+- Fornisce feedback dettagliato con emoji per ogni operazione
+
+Utilizzo:
+    python backend/init_db.py
+
+Prerequisiti:
+- File .env con DATABASE_URL configurato
+- File database/schema.sql con DDL tabelle
+- File database/seed.sql con dati iniziali
+- Database MySQL già creato e accessibile
+
+Variabili d'ambiente richieste:
+- DATABASE_URL: mysql+pymysql://user:pass@host:port/dbname
+
+Output:
+- ✓ Conferme per statement eseguiti con successo
+- ⚠️ Warning per statement duplicati/già esistenti
+- ❌ Errori per problemi di connessione o SQL invalido
 """
 import os
 import sys

@@ -1,3 +1,9 @@
+/* ========================================================================
+   File: valutazione.js
+   Modulo: cliente
+   DroneDelivery SPA - JavaScript Module
+   ======================================================================== */
+
 /**
  * Valutazione Module - Rating missions
  */

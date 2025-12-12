@@ -1,3 +1,9 @@
+/* ========================================================================
+   File: missioni.js
+   Modulo: admin
+   DroneDelivery SPA - JavaScript Module
+   ======================================================================== */
+
 /**
  * Missioni View - Mission management for admins
  */

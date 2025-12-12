@@ -1,3 +1,9 @@
+/* ========================================================================
+   File: mappa.js
+   Modulo: cliente
+   DroneDelivery SPA - JavaScript Module
+   ======================================================================== */
+
 /**
  * Mappa Module - Leaflet Integration
  */

@@ -1,5 +1,77 @@
 <!DOCTYPE html>
+
+
 <html lang="it">
+<!--
+╔══════════════════════════════════════════════════════════════════════════════╗
+║ Template HTML: Pagina di Landing e Autenticazione                            ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                               ║
+║ DESCRIZIONE:                                                                  ║
+║ Pagina di ingresso dell'applicazione DroneDelivery con form di login e       ║
+║ registrazione. Gestisce l'autenticazione utenti e il routing iniziale.       ║
+║                                                                               ║
+║ FUNZIONALITÀ:                                                                 ║
+║ • Sistema a tab per switch tra login e registrazione                          ║
+║ • Form login: email + password                                                ║
+║ • Form registrazione: nome completo + email + password                        ║
+║ • Validazione client-side (HTML5 + pattern email)                            ║
+║ • Chiamate API autenticazione (/api/auth/login, /api/auth/register)          ║
+║ • Auto-redirect basato su ruolo utente:                                       ║
+║   - Admin → /admin (pannello amministrazione)                                 ║
+║   - Cliente → /cliente (area cliente)                                         ║
+║ • Check sessione attiva all'avvio (auto-login se già autenticato)            ║
+║ • Gestione errori con messaggi user-friendly                                  ║
+║                                                                               ║
+║ STRUTTURA:                                                                     ║
+║ <head>                                                                         ║
+║   • Meta viewport per responsive design                                       ║
+║   • Import CSS variables + common styles                                      ║
+║   • Stili inline per layout landing page                                      ║
+║ <body>                                                                         ║
+║   • Header con logo e subtitle                                                ║
+║   • Card container con tab login/registrazione                                ║
+║   • Form per login (email + password)                                         ║
+║   • Form per registrazione (nome + email + password)                          ║
+║   • Link al pannello admin                                                    ║
+║   • Script inline per gestione form e autenticazione                          ║
+║                                                                               ║
+║ STILI CSS:                                                                     ║
+║ • Design system industriale con toni scuri                                    ║
+║ • Gradienti e glow effects su elementi interattivi                            ║
+║ • Transizioni smooth per UX fluida                                             ║
+║ • Tab attivo evidenziato con border bottom                                    ║
+║ • Error message con styling danger (rosso)                                    ║
+║                                                                               ║
+║ JAVASCRIPT:                                                                    ║
+║ • Event listener su tab per switch tra login/registrazione                    ║
+║ • Submit handler form login:                                                  ║
+║   - POST /api/auth/login                                                      ║
+║   - Salva dati utente in localStorage                                          ║
+║   - Redirect basato su ruolo                                                  ║
+║ • Submit handler form registrazione:                                          ║
+║   - POST /api/auth/register                                                   ║
+║   - Auto-login dopo registrazione successo                                    ║
+║   - Redirect a /cliente                                                       ║
+║ • Check sessione IIFE all'avvio:                                               ║
+║   - GET /api/auth/check                                                       ║
+║   - Redirect automatico se già loggato                                        ║
+║                                                                               ║
+║ SICUREZZA:                                                                     ║
+║ • Password mai visualizzata (type="password")                                 ║
+║ • HTTPS required in produzione (SESSION_COOKIE_SECURE)                        ║
+║ • Validazione server-side oltre a client-side                                 ║
+║ • Token sessione gestito server-side (no JWT in localStorage)                ║
+║                                                                               ║
+║ ACCESSIBILITÀ:                                                                 ║
+║ • Label associate a input tramite for/id                                      ║
+║ • Placeholder descrittivi                                                     ║
+║ • Required e minlength per validazione                                        ║
+║ • Focus-visible styling per navigazione tastiera                              ║
+║                                                                               ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+-->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

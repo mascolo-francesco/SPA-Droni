@@ -1,5 +1,82 @@
 <!DOCTYPE html>
+
+
 <html lang="it">
+<!--
+╔══════════════════════════════════════════════════════════════════════════════╗
+║ Template HTML: Interfaccia Cliente DroneDelivery SPA                         ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                               ║
+║ DESCRIZIONE:                                                                  ║
+║ Single Page Application (SPA) per l'area cliente. Interfaccia completa per   ║
+║ gestione ordini, tracking consegne real-time e valutazioni.                  ║
+║                                                                               ║
+║ ARCHITETTURA:                                                                 ║
+║ • Layout a sidebar fissa + main content dinamico                             ║
+║ • Router client-side per navigazione senza page reload                        ║
+║ • Componenti modulari JavaScript caricati on-demand                           ║
+║ • State management tramite oggetto ClienteApp globale                         ║
+║ • API calls centralizzate nel modulo api.js                                   ║
+║                                                                               ║
+║ SEZIONI PRINCIPALI:                                                            ║
+║ 1. Sidebar Navigation                                                         ║
+║    • Logo DroneDelivery                                                       ║
+║    • Menu: I Miei Ordini                                                      ║
+║    • User info footer con nome ed email                                       ║
+║                                                                               ║
+║ 2. Header                                                                      ║
+║    • Mobile menu button (hamburger)                                           ║
+║    • User dropdown menu                                                       ║
+║    • Logout button                                                            ║
+║                                                                               ║
+║ 3. Main Content Area                                                          ║
+║    • Container dinamico popolato da router                                    ║
+║    • Loading spinner durante fetch dati                                       ║
+║    • Toast notifications per feedback utente                                  ║
+║                                                                               ║
+║ FUNZIONALITÀ CLIENTE:                                                          ║
+║ • Visualizzazione lista ordini personali                                       ║
+║ • Creazione nuovo ordine (selezione prodotti + indirizzo)                     ║
+║ • Tracking real-time con mappa Leaflet.js                                     ║
+║ • Visualizzazione percorso drone con polyline                                 ║
+║ • Valutazione missione completata (1-10 stelle + commento)                    ║
+║ • Storico ordini con filtri e ricerca                                         ║
+║                                                                               ║
+║ MODULI JAVASCRIPT CARICATI:                                                    ║
+║ Shared (comuni):                                                              ║
+║ • utils.js - Utility functions (format date, debounce, etc)                   ║
+║ • auth.js - Gestione autenticazione e controllo sessione                      ║
+║ • router.js - Client-side routing senza page reload                           ║
+║ • components.js - Componenti UI riutilizzabili (modal, toast, etc)           ║
+║                                                                               ║
+║ Cliente-specific:                                                             ║
+║ • api.js - Client API wrapper per chiamate backend                            ║
+║ • mappa.js - Gestione mappa Leaflet con tracking real-time                    ║
+║ • ordini.js - Vista lista ordini cliente                                       ║
+║ • tracking.js - Tracking live posizione drone                                 ║
+║ • valutazione.js - Form valutazione post-consegna                             ║
+║ • nuovo-ordine.js - Wizard creazione nuovo ordine                             ║
+║ • app.js - Bootstrapping e inizializzazione ClienteApp                        ║
+║                                                                               ║
+║ LIBRERIE ESTERNE:                                                              ║
+║ • Leaflet.js 1.9.4 - Mappe interattive OpenStreetMap                         ║
+║ • Google Fonts - DM Sans + Inter per tipografia                               ║
+║                                                                               ║
+║ RESPONSIVE DESIGN:                                                             ║
+║ • Layout adattivo mobile-first                                                ║
+║ • Sidebar collapsible su mobile                                               ║
+║ • Touch-friendly controls                                                     ║
+║ • Breakpoint gestiti in CSS                                                   ║
+║                                                                               ║
+║ INIZIALIZZAZIONE:                                                              ║
+║ • DOMContentLoaded event → ClienteApp.init()                                  ║
+║ • Check autenticazione tramite auth.js                                        ║
+║ • Setup router e event listeners                                              ║
+║ • Caricamento view iniziale (ordini)                                          ║
+║                                                                               ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+-->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

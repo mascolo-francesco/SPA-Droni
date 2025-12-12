@@ -1,3 +1,9 @@
+/* ========================================================================
+   File: droni.js
+   Modulo: admin
+   DroneDelivery SPA - JavaScript Module
+   ======================================================================== */
+
 /**
  * Droni View - Drone management for admins
  */

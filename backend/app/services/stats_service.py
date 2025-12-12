@@ -1,3 +1,28 @@
+"""
+Servizio per il calcolo di statistiche e metriche aggregate.
+
+NOTA: Questo file contiene funzioni legacy che NON sono attualmente
+utilizzate dall'applicazione. Le statistiche sono calcolate direttamente
+nelle route (backend/app/routes/statistiche.py).
+
+Funzioni fornite (non utilizzate):
+- get_overview_stats(): Calcola KPI principali dashboard
+- get_missions_stats(): Statistiche missioni per stato
+- get_ratings_distribution(): Distribuzione valutazioni
+
+Differenze rispetto alle route attuali:
+- Usa nomi campi diversi (stato vs Stato, id vs ID)
+- Valutazioni 1-5 invece di 1-10
+- Riferimenti a campo 'stato' in Drone (non presente nel modello attuale)
+
+Questo suggerisce un'evoluzione del modello dati e delle API,
+con il codice nelle route che rappresenta la versione attuale
+e questo servizio una versione precedente del sistema.
+
+Potenziale utilizzo futuro:
+Potrebbe essere allineato al modello attuale e riattivato per
+centralizzare la logica statistica, facilitando test e riuso.
+"""
 from sqlalchemy import func
 from app.models import Ordine, Missione, Drone
 from app.extensions import db
